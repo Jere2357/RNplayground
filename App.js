@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(127, 237, 245, 1)',
-    height: 715,
+    height: 800,
   },
   title: {
     fontSize: 30,

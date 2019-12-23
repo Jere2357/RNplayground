@@ -1,15 +1,34 @@
 import React, {Component} from 'react';
-import {View, Button, Text} from 'react-native';
+import {View, Button} from 'react-native';
+import {NativeRouter, Switch, Route} from 'react-router-native';
 
-// import CurrencyPage from '../containers/CurrencyPage';
+import CurrencyPage from './CurrencyPage';
+import JokesPage from './JokesPage';
 
 export default class MainPage extends Component {
   render() {
     return (
-      <View>
-        <Button title={'Currency'} onPress={() => alert('Sir sir sir')} />
-        <Button title={'Jokes'} />
-      </View>
+      <NativeRouter>
+        <Switch>
+          <Route
+            exact path={'/'}
+            render={({history}) => (
+              <View>
+                <Button
+                  title={'Currency'}
+                  onPress={() => history.push('/currency')}
+                />
+                <Button
+                  title={'Jokes'}
+                  onPress={() => history.push('/jokes')}
+                />
+              </View>
+            )}
+          />
+          <Route exact path={'/currency'} component={CurrencyPage} />
+          <Route exact path={'/jokes'} component={JokesPage} />
+        </Switch>
+      </NativeRouter>
     );
   }
 }
