@@ -34,11 +34,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'rgba(127, 237, 245, 1)',
     height: 800,
-  },
-  title: {
-    fontSize: 30,
-  },
-  loading: {
-    textAlign: 'center',
-  },
+  }
 });

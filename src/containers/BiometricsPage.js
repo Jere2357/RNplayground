@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ReactNativeBiometrics from 'react-native-biometrics';
-import {View, Button} from 'react-native';
+import {View, Button, StyleSheet} from 'react-native';
 
 class BiometricsPage extends Component{
 
@@ -92,7 +92,7 @@ class BiometricsPage extends Component{
         //simplePrompt()
 
         ReactNativeBiometrics.simplePrompt({
-            promptMessage: 'Sign in'
+            promptMessage: 'Checking if biometric is provided in this device'
         })
             .then((resultObject) => {
                 const { success } = resultObject
@@ -110,11 +110,11 @@ class BiometricsPage extends Component{
 
     render(){
         return(
-            <View>
-                <Button title={'What sensor available'} onPress={() => this.isSensorAvailable()} />
-                <Button title={'create API key'} onPress={() => this.createKeys()} />
-                <Button title={'API key exist ?'} onPress={() => this.biometricKeysExists()} />
-                <Button title={'delete API key'} onPress={() => this.deleteKeys()} />
+            <View style={styles.container}>
+                <Button title={'What sensor is available'} onPress={() => this.isSensorAvailable()} />
+                <Button title={'create public key'}  onPress={() => this.createKeys()} />
+                <Button title={'public key exist ?'} onPress={() => this.biometricKeysExists()} />
+                <Button title={'delete public key'} onPress={() => this.deleteKeys()} />
                 <Button title={'create signature key'} onPress={() => this.createSignature()} />
                 <Button title={'simple prompt of biometrics'} onPress={() => this.simplePrompt()} />
             </View>
@@ -122,5 +122,16 @@ class BiometricsPage extends Component{
     }
 
 }
+
+const styles = StyleSheet.create({
+    container: {
+      flexDirection: 'column',
+      display: 'flex',
+      justifyContent: 'center',
+      backgroundColor: 'rgba(127, 237, 245, 1)',
+      height: 800,
+    },
+  });
+  
 
 export default BiometricsPage;
