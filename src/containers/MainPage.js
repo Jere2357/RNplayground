@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-import {View, Button} from 'react-native';
+import {View, Button, StyleSheet} from 'react-native';
 import {NativeRouter, Switch, Route} from 'react-router-native';
 
-import CurrencyPage from './CurrencyPage';
-import JokesPage from './JokesPage';
 import BiometricsPage from './BiometricsPage';
 
 export default class MainPage extends Component {
@@ -14,15 +12,7 @@ export default class MainPage extends Component {
           <Route
             exact path={'/'}
             render={({history}) => (
-              <View>
-                <Button
-                  title={'Currency'}
-                  onPress={() => history.push('/currency')}
-                />
-                <Button
-                  title={'Jokes'}
-                  onPress={() => history.push('/jokes')}
-                />
+              <View style={styles.container}>
                 <Button
                   title={'Biometrics'}
                   onPress={() => history.push('/biometrics')}
@@ -30,11 +20,25 @@ export default class MainPage extends Component {
               </View>
             )}
           />
-          <Route exact path={'/currency'} component={CurrencyPage} />
-          <Route exact path={'/jokes'} component={JokesPage} />
           <Route exact path={'/biometrics'} component={BiometricsPage} />
         </Switch>
       </NativeRouter>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(127, 237, 245, 1)',
+    height: 800,
+  },
+  title: {
+    fontSize: 30,
+  },
+  loading: {
+    textAlign: 'center',
+  },
+});

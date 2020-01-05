@@ -29,9 +29,9 @@ export default class App extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View>
         {this.state.splashScreen ? (
-          <View>
+          <View style={styles.container}>
             <Text style={styles.title}>React Native Playground</Text>
             <Text>Loading.....</Text>
           </View>

@@ -6,56 +6,55 @@ class BiometricsPage extends Component{
 
     constructor(props){
         super(props);
-        this.biometrics = this.biometrics.bind(this);
     }
 
-    async biometrics(){
-        // const { biometryType } = await ReactNativeBiometrics.isSensorAvailable();
-        
-        // if(biometryType){
-        //     alert(biometryType+' is your device biometric type');
-        // }
-
+    async isSensorAvailable(){
         //isSensorAvailable() 
 
-        // ReactNativeBiometrics.isSensorAvailable()
-        // .then((resultObject) => {
-        //     const { available, biometryType } = resultObject
+        ReactNativeBiometrics.isSensorAvailable()
+        .then((resultObject) => {
+            const { available, biometryType } = resultObject
         
-        //     if (available && biometryType === ReactNativeBiometrics.TouchID) {
-        //     console.log('TouchID is supported')
-        //     } else if (available && biometryType === ReactNativeBiometrics.FaceID) {
-        //     console.log('FaceID is supported')
-        //     } else if (available && biometryType === ReactNativeBiometrics.Biometrics) {
-        //     console.log('Biometrics is supported')
-        //     } else {
-        //     console.log('Biometrics not supported')
-        //     }
-        // })
+            if (available && biometryType === ReactNativeBiometrics.TouchID) {
+            alert('TouchID is supported')
+            } else if (available && biometryType === ReactNativeBiometrics.FaceID) {
+            alert('FaceID is supported')
+            } else if (available && biometryType === ReactNativeBiometrics.Biometrics) {
+            alert('Biometrics is supported')
+            } else {
+            alert('Biometrics not supported')
+            }
+        })
+    }
 
+    async createKeys() {
         // createKeys()
 
-        // ReactNativeBiometrics.createKeys('sfdsfsfsdf')
-        //     .then((resultObject) => {
-        //         const { publicKey } = resultObject
-        //         alert(publicKey)
-        //         sendPublicKeyToServer(publicKey)
-        //     })
+        ReactNativeBiometrics.createKeys('Confirm fingerprint')
+            .then((resultObject) => {
+                const { publicKey } = resultObject
+                alert(publicKey)
+                // sendPublicKeyToServer(publicKey)
+            })
+    }
 
+    async biometricKeysExists(){
         //biometricKeysExist()
 
-        // ReactNativeBiometrics.biometricKeysExist()
-        //     .then((resultObject) => {
-        //         const { keysExist } = resultObject
+        ReactNativeBiometrics.biometricKeysExist()
+            .then((resultObject) => {
+                const { keysExist } = resultObject
             
-        //         if (keysExist) {
-        //         alert(keysExist+' Keys exist')
-        //         } else {
-        //         alert(keysExist+' Keys do not exist or were deleted')
-        //         }
-        //     })
+                if (keysExist) {
+                alert(keysExist+' Keys exist')
+                } else {
+                alert(keysExist+' Keys do not exist or were deleted')
+                }
+            })
+    }
 
-        //deleteKeys()
+    async deleteKeys(){
+        // //deleteKeys()
 
         ReactNativeBiometrics.deleteKeys()
             .then((resultObject) => {
@@ -67,12 +66,57 @@ class BiometricsPage extends Component{
                 alert(keysDeleted+' Unsuccessful deletion because there were no keys to delete')
                 }
             })
+    }
 
+    async createSignature(){
+        let epochTimeSeconds = Math.round((new Date()).getTime() / 1000).toString()
+        let payload = epochTimeSeconds + 'Current Date for Creating finger print'
 
+        ReactNativeBiometrics.createSignature({
+                promptMessage: 'Sign in',
+                payload: payload
+            })
+            .then((resultObject) => {
+                const { success, signature, error } = resultObject
+            
+                if (success) {
+                alert(signature)
+                // verifySignatureWithServer(signature, payload)
+                }
+                if(error){
+                    alert('There is no private key pairs')
+                }
+            })
+            .catch(() => alert('Failed creating signature key'))
+    
+    }
+
+    async simplePrompt(){
+        ReactNativeBiometrics.simplePrompt('Confirm fingerprint')
+            .then((resultObject) => {
+                const { success } = resultObject
+            
+                if (success) {
+                console.log('successful biometrics provided')
+                } else {
+                console.log('user cancelled biometric prompt')
+                }
+            })
+            .catch(() => {
+                console.log('biometrics failed')
+            })
     }
 
     render(){
-        return <Button title={'hello biometrics'} onPress={() => this.biometrics()} />
+        return(
+            <View>
+                <Button title={'What sensor available'} onPress={() => this.isSensorAvailable()} />
+                <Button title={'create API keys'} onPress={() => this.createKeys()} />
+                <Button title={'keys exist ?'} onPress={() => this.biometricKeysExists()} />
+                <Button title={'delete keys'} onPress={() => this.deleteKeys()} />
+                <Button title={'create signature key'} onPress={() => this.createSignature()} />
+            </View>
+        ); 
     }
 
 }
