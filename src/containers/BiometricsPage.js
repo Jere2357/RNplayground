@@ -77,14 +77,11 @@ class BiometricsPage extends Component{
                 payload: payload
             })
             .then((resultObject) => {
-                const { success, signature, error } = resultObject
+                const { success, signature } = resultObject
             
                 if (success) {
                 alert(signature)
                 // verifySignatureWithServer(signature, payload)
-                }
-                if(error){
-                    alert('There is no private key pairs')
                 }
             })
             .catch(() => alert('Failed creating signature key'))
@@ -92,18 +89,22 @@ class BiometricsPage extends Component{
     }
 
     async simplePrompt(){
-        ReactNativeBiometrics.simplePrompt('Confirm fingerprint')
+        //simplePrompt()
+
+        ReactNativeBiometrics.simplePrompt({
+            promptMessage: 'Sign in'
+        })
             .then((resultObject) => {
                 const { success } = resultObject
             
                 if (success) {
-                console.log('successful biometrics provided')
+                alert('successful biometrics provided')
                 } else {
-                console.log('user cancelled biometric prompt')
+                alert('user cancelled biometric prompt')
                 }
             })
             .catch(() => {
-                console.log('biometrics failed')
+                alert('biometrics prompt failed')
             })
     }
 
@@ -111,10 +112,11 @@ class BiometricsPage extends Component{
         return(
             <View>
                 <Button title={'What sensor available'} onPress={() => this.isSensorAvailable()} />
-                <Button title={'create API keys'} onPress={() => this.createKeys()} />
-                <Button title={'keys exist ?'} onPress={() => this.biometricKeysExists()} />
-                <Button title={'delete keys'} onPress={() => this.deleteKeys()} />
+                <Button title={'create API key'} onPress={() => this.createKeys()} />
+                <Button title={'API key exist ?'} onPress={() => this.biometricKeysExists()} />
+                <Button title={'delete API key'} onPress={() => this.deleteKeys()} />
                 <Button title={'create signature key'} onPress={() => this.createSignature()} />
+                <Button title={'simple prompt of biometrics'} onPress={() => this.simplePrompt()} />
             </View>
         ); 
     }
