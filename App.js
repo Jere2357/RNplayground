@@ -10,6 +10,7 @@ import React, {Component} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import MainPage from './src/containers/MainPage';
 
+
 export default class App extends Component {
   constructor(props) {
     super(props);
