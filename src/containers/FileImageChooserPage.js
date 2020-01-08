@@ -14,7 +14,6 @@ class FileImageChooserPage extends Component {
     // More info on all the options is below in the API Reference... just some common use cases shown here
     const options = {
       title: 'Upload Profile',
-      customButtons: [{name: 'fb', title: 'Choose Photo from Facebook'}],
       storageOptions: {
         skipBackup: true,
         path: 'images',
@@ -26,8 +25,6 @@ class FileImageChooserPage extends Component {
      * The second arg is the callback which sends object: response (more info in the API Reference)
      */
     ImagePicker.showImagePicker(options, response => {
-      alert('Response = ', response);
-
       const source = {uri: response.uri};
 
       // You can also display the image using data:
@@ -39,24 +36,6 @@ class FileImageChooserPage extends Component {
     });
   }
 
-  async handlerLaunchLibrary() {
-    // More info on all the options is below in the API Reference... just some common use cases shown here
-    const options = {
-      title: 'Select Avatar',
-      customButtons: [{name: 'fb', title: 'Choose Photo from Facebook'}],
-      storageOptions: {
-        skipBackup: true,
-        path: 'images',
-      },
-    };
-
-    // Open Image Library:
-    ImagePicker.launchImageLibrary(options, response => {
-      // Same code as in above section!
-      alert('Response = ', response);
-    });
-  }
-
   render() {
     return (
       <View style={styles.container}>
@@ -64,10 +43,6 @@ class FileImageChooserPage extends Component {
         <Button
           title={'pick an image'}
           onPress={() => this.handlerImagePicker()}
-        />
-        <Button
-          title={'launch image library'}
-          onPress={() => this.handlerLaunchLibrary()}
         />
       </View>
     );
@@ -77,13 +52,13 @@ class FileImageChooserPage extends Component {
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: 'rgba(127, 237, 245, 1)',
     height: 800,
   },
   stretch: {
     width: 200,
-    height: 200,
-    resizeMode: 'stretch',
+    height: 300,
   },
 });
 
