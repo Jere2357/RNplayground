@@ -4,6 +4,7 @@ import {NativeRouter, Switch, Route} from 'react-router-native';
 import BiometricsPage from './BiometricsPage';
 import MapsPage from './MapsPage';
 import FileImageChooserPage from './FileImageChooserPage';
+import CameraPage from './CameraPage';
 
 export default class MainPage extends Component {
   render() {
@@ -24,12 +25,17 @@ export default class MainPage extends Component {
                   title={'File Chooser'}
                   onPress={() => history.push('/fileChooser')}
                 />
+                <Button
+                  title={'Camera'}
+                  onPress={() => history.push('/camera')}
+                />
               </View>
             )}
           />
           <Route exact path={'/biometrics'} component={BiometricsPage} />
           <Route exact path={'/maps'} component={MapsPage} />
           <Route exact path={'/fileChooser'} component={FileImageChooserPage} />
+          <Route exact path={'/camera'} component={CameraPage} />
         </Switch>
       </NativeRouter>
     );
