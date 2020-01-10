@@ -9,7 +9,12 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Text} from 'react-native';
 import MainPage from './src/containers/MainPage';
-
+import BiometricsPage from './src/containers/BiometricsPage';
+import MapsPage from './src/containers/MapsPage';
+import FileImageChooserPage from './src/containers/FileImageChooserPage';
+import CameraPage from './src/containers/CameraPage';
+import QRCodeScannerPage from './src/containers/QRCodeScannerPage';
+import DocumentPage from './src/containers/DocumentPage';
 
 export default class App extends Component {
   constructor(props) {

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ReactNativeBiometrics from 'react-native-biometrics';
 import {View, Button, StyleSheet} from 'react-native';
+import {Header, Left, Body, Title} from 'native-base';
 
 class BiometricsPage extends Component {
   constructor(props) {
@@ -113,24 +114,50 @@ class BiometricsPage extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Button
-          title={'What sensor is available'}
-          onPress={() => this.isSensorAvailable()}
-        />
-        <Button title={'create public key'} onPress={() => this.createKeys()} />
-        <Button
-          title={'public key exist ?'}
-          onPress={() => this.biometricKeysExists()}
-        />
-        <Button title={'delete public key'} onPress={() => this.deleteKeys()} />
-        <Button
-          title={'create signature key'}
-          onPress={() => this.createSignature()}
-        />
-        <Button
-          title={'simple prompt of biometrics'}
-          onPress={() => this.simplePrompt()}
-        />
+        <Header>
+          <Left>
+            <Button title={'<'} onPress={() => this.props.history.push('/')} />
+          </Left>
+          <Body>
+            <Title>Biometrics</Title>
+          </Body>
+        </Header>
+        <View style={styles.buttonContent}>
+          <Button
+            title={'What sensor is available'}
+            onPress={() => this.isSensorAvailable()}
+          />
+        </View>
+        <View style={styles.buttonContent}>
+          <Button
+            title={'create public key'}
+            onPress={() => this.createKeys()}
+          />
+        </View>
+        <View style={styles.buttonContent}>
+          <Button
+            title={'public key exist ?'}
+            onPress={() => this.biometricKeysExists()}
+          />
+        </View>
+        <View style={styles.buttonContent}>
+          <Button
+            title={'delete public key'}
+            onPress={() => this.deleteKeys()}
+          />
+        </View>
+        <View style={styles.buttonContent}>
+          <Button
+            title={'create signature key'}
+            onPress={() => this.createSignature()}
+          />
+        </View>
+        <View style={styles.buttonContent}>
+          <Button
+            title={'simple prompt of biometrics'}
+            onPress={() => this.simplePrompt()}
+          />
+        </View>
       </View>
     );
   }
@@ -140,9 +167,12 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     display: 'flex',
-    justifyContent: 'center',
     backgroundColor: 'rgba(127, 237, 245, 1)',
-    height: 800,
+    height: 900,
+  },
+  buttonContent: {
+    justifyContent: 'center',
+    margin: 30,
   },
 });
 

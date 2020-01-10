@@ -1,12 +1,21 @@
 import React, {Component} from 'react';
 import MapView, {Marker} from 'react-native-maps';
 
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Button} from 'react-native';
+import {Header, Left, Body, Title} from 'native-base';
 
 class MapsPage extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Header>
+          <Left>
+            <Button title={'<'} onPress={() => this.props.history.push('/')} />
+          </Left>
+          <Body>
+            <Title>Maps</Title>
+          </Body>
+        </Header>
         <MapView
           style={styles.map}
           initialRegion={{
@@ -31,12 +40,12 @@ class MapsPage extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: 'column',
+    display: 'flex',
     height: 800,
   },
   map: {
-    height: '100%',
+    height: '95%',
     width: '100%',
   },
 });

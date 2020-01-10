@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {View, TouchableOpacity, Text, StyleSheet, Button} from 'react-native';
 import {RNCamera} from 'react-native-camera';
+import {Body, Header, Left, Title} from 'native-base';
 
 const PendingView = () => (
   <View
@@ -28,6 +29,14 @@ class CameraPage extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <Header>
+          <Left>
+            <Button title={'<'} onPress={() => this.props.history.push('/')} />
+          </Left>
+          <Body>
+            <Title>Camera</Title>
+          </Body>
+        </Header>
         <RNCamera
           style={styles.preview}
           type={RNCamera.Constants.Type.back}
@@ -51,9 +60,8 @@ class CameraPage extends Component {
             return (
               <View
                 style={{
-                  flex: 0,
-                  flexDirection: 'row',
                   justifyContent: 'center',
+                  height: 900,
                 }}>
                 <TouchableOpacity
                   onPress={() => this.takePicture(camera)}
@@ -71,12 +79,9 @@ class CameraPage extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'column',
+    display: 'flex',
     backgroundColor: 'rgba(127, 237, 245, 1)',
-  },
-  preview: {
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+    height: 900,
   },
   capture: {
     backgroundColor: '#fff',

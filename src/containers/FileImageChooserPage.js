@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {View, Button, StyleSheet, Image} from 'react-native';
+import {Header, Left, Body, Title} from 'native-base';
 import ImagePicker from 'react-native-image-picker';
 
 class FileImageChooserPage extends Component {
@@ -39,11 +40,21 @@ class FileImageChooserPage extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image source={this.state.imageSource} style={styles.stretch} />
-        <Button
-          title={'pick an image'}
-          onPress={() => this.handlerImagePicker()}
-        />
+        <Header>
+          <Left>
+            <Button title={'<'} onPress={() => this.props.history.push('/')} />
+          </Left>
+          <Body>
+            <Title>File Image Chooser</Title>
+          </Body>
+        </Header>
+        <View style={styles.content}>
+          <Image source={this.state.imageSource} style={styles.stretch} />
+          <Button
+            title={'pick an image'}
+            onPress={() => this.handlerImagePicker()}
+          />
+        </View>
       </View>
     );
   }
@@ -51,14 +62,16 @@ class FileImageChooserPage extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: 'rgba(127, 237, 245, 1)',
     height: 800,
   },
   stretch: {
-    width: 200,
-    height: 300,
+    alignContent: 'center',
+    width: 300,
+    height: 500,
+  },
+  content: {
+    alignItems: 'center',
   },
 });
 
