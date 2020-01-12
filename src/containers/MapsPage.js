@@ -3,6 +3,7 @@ import MapView, {Marker} from 'react-native-maps';
 
 import {View, StyleSheet, Button} from 'react-native';
 import {Header, Left, Body, Title} from 'native-base';
+import RNDrawer from 'react-native-raw-bottom-sheet';
 
 class MapsPage extends Component {
   render() {
@@ -33,6 +34,23 @@ class MapsPage extends Component {
             description="A location to test"
           />
         </MapView>
+        <RNDrawer
+          ref={ref => {
+            this.RBSheet = ref;
+          }}
+          height={300}
+          duration={250}
+          customStyles={{
+            container: {
+              justifyContent: "center",
+              alignItems: "center"
+            }
+          }}
+        >
+          <View>
+            <Text>Hello this is my first drawer bottom</Text>
+          </View>
+        </RNDrawer>
       </View>
     );
   }
