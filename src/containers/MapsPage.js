@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import MapView, {Marker} from 'react-native-maps';
 
-import {View, StyleSheet, Button} from 'react-native';
+import {View, StyleSheet, Button, Text} from 'react-native';
 import {Header, Left, Body, Title} from 'native-base';
 import RNDrawer from 'react-native-raw-bottom-sheet';
 
@@ -17,6 +17,7 @@ class MapsPage extends Component {
             <Title>Maps</Title>
           </Body>
         </Header>
+        <Button title={'Open Bottom Drawer'} onPress={() => this.RNDrawer.open()} />
         <MapView
           style={styles.map}
           initialRegion={{
@@ -36,19 +37,24 @@ class MapsPage extends Component {
         </MapView>
         <RNDrawer
           ref={ref => {
-            this.RBSheet = ref;
+            this.RNDrawer = ref;
           }}
-          height={300}
+          height={250}
           duration={250}
           customStyles={{
             container: {
+              borderTopLeftRadius: 30,
+              borderTopRightRadius: 30,
               justifyContent: "center",
               alignItems: "center"
             }
           }}
         >
-          <View>
-            <Text>Hello this is my first drawer bottom</Text>
+          <View style={styles.bottomDrawerContainer}>
+            <Text>This is a hard coded location. Locating pearlpay inc. at makati city</Text>
+            <View style={styles.gotItButton}>
+              <Button title={'Got it'} onPress={() => this.RNDrawer.close()} />
+            </View>
           </View>
         </RNDrawer>
       </View>
@@ -65,6 +71,12 @@ const styles = StyleSheet.create({
   map: {
     height: '95%',
     width: '100%',
+  },
+  bottomDrawerContainer: {
+    width: '70%',
+  },
+  gotItButton: {
+    margin: 30,
   },
 });
 

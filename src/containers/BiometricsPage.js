@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ReactNativeBiometrics from 'react-native-biometrics';
 import {View, Button, StyleSheet} from 'react-native';
 import {Header, Left, Body, Title} from 'native-base';
+import RNDrawer from 'react-native-raw-bottom-sheet';
 
 class BiometricsPage extends Component {
   constructor(props) {

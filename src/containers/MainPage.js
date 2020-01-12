@@ -31,7 +31,7 @@ class MainPage extends Component {
                     onPress={() => history.push('/biometrics')}
                   />
                 </View>
-                <View style={styles.buttonContainer}>
+                <View style={styles.buttonContainer}>  
                   <Button
                     title={'Maps'}
                     onPress={() => history.push('/maps')}
